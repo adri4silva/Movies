@@ -117,6 +117,6 @@ private extension TMDBApiEndpoint {
     }
 }
 
-public final class TMDBClientAssembly {
-    private(set) lazy var client = TMDBClient(configuration: .standard)
+public final class Assembly {
+    public private(set) lazy var client = TMDBClient(configuration: .standard)
 }

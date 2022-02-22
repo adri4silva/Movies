@@ -31,6 +31,8 @@
 		3AD57C4427C58170003E8AB9 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD57C0227C572D0003E8AB9 /* Core.framework */; };
 		3AD57C4527C58170003E8AB9 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD57C0227C572D0003E8AB9 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3AD57C4A27C58388003E8AB9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C4927C58388003E8AB9 /* ViewModel.swift */; };
+		3AD57C4C27C5881A003E8AB9 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C4B27C5881A003E8AB9 /* Assembly.swift */; };
+		3AD57C4E27C58950003E8AB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C4D27C58950003E8AB9 /* ViewController.swift */; };
 		B73C46BE5EB801DCFAF23047 /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77613ABC7496517A4E693446 /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +137,8 @@
 		3AD57C3527C58057003E8AB9 /* TrendingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingTests.swift; sourceTree = "<group>"; };
 		3AD57C4227C580A7003E8AB9 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		3AD57C4927C58388003E8AB9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		3AD57C4B27C5881A003E8AB9 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		3AD57C4D27C58950003E8AB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4368E853983F6D4E723A06D2 /* Pods-Trending.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trending.debug.xcconfig"; path = "Target Support Files/Pods-Trending/Pods-Trending.debug.xcconfig"; sourceTree = "<group>"; };
 		4B4346770A429A87334B6207 /* Pods-Movies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.release.xcconfig"; path = "Target Support Files/Pods-Movies/Pods-Movies.release.xcconfig"; sourceTree = "<group>"; };
 		77613ABC7496517A4E693446 /* Pods_Movies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +269,8 @@
 				3AD57C2927C58057003E8AB9 /* Trending.h */,
 				3AD57C4227C580A7003E8AB9 /* Repository.swift */,
 				3AD57C4927C58388003E8AB9 /* ViewModel.swift */,
+				3AD57C4B27C5881A003E8AB9 /* Assembly.swift */,
+				3AD57C4D27C58950003E8AB9 /* ViewController.swift */,
 			);
 			path = Trending;
 			sourceTree = "<group>";
@@ -625,6 +631,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD57C4A27C58388003E8AB9 /* ViewModel.swift in Sources */,
+				3AD57C4C27C5881A003E8AB9 /* Assembly.swift in Sources */,
+				3AD57C4E27C58950003E8AB9 /* ViewController.swift in Sources */,
 				3AD57C4327C580A7003E8AB9 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
