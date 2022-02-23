@@ -14,12 +14,24 @@ final class ViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, TrendingResponse.Trending>!
     // MARK: Layout
     private let collectionView: UICollectionView = {
-        let layout = UICollectionViewCompositionalLayout.list(
-            using: UICollectionLayoutListConfiguration(
-                appearance: .insetGrouped
+        func createLayout() -> UICollectionViewLayout {
+            let layoutSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalHeight(1.0)
             )
-        )
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            let item = NSCollectionLayoutItem(layoutSize: layoutSize)
+            let group = NSCollectionLayoutGroup.horizontal(
+                layoutSize: layoutSize,
+                subitem: item,
+                count: 1
+            )
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            section.interGroupSpacing = 12
+            let layout = UICollectionViewCompositionalLayout(section: section)
+            return layout
+        }
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collection.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collection.backgroundColor = .white
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -38,9 +50,14 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
 
         let cellRegistration = UICollectionView.CellRegistration<CollectionViewCell, TrendingResponse.Trending> { cell, index, item in
-            var content = cell.defaultContentConfiguration()
-            content.text = item.title
-            cell.contentConfiguration = content
+            cell.backgroundImage.kf.setImage(
+                with: URL(string: "https://image.tmdb.org/t/p/original\(item.posterPath)"),
+                options: [
+                    .loadDiskFileSynchronously,
+                    .cacheOriginalImage,
+                    .transition(.fade(0.25)),
+                ]
+            )
         }
 
         self.dataSource = UICollectionViewDiffableDataSource<Section, TrendingResponse.Trending>(collectionView: collectionView) { collection, index, identifier in
@@ -88,23 +105,30 @@ final class TrendingView: UIView {
 
 }
 
-final class CollectionViewCell: UICollectionViewListCell {
+import Kingfisher
+
+final class CollectionViewCell: UICollectionViewCell {
     static let identifier = "TrendingCell"
 
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let backgroundImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        addSubview(titleLabel)
+        addSubview(backgroundImage)
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 6),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 6)
+            backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImage.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+
+
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }

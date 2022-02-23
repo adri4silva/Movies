@@ -19,4 +19,5 @@ end
 target 'Trending' do
   use_frameworks!
   shared_pods
+  pod 'Kingfisher', '~> 7.0'
 end
