@@ -1,12 +1,7 @@
-//
-//  AppDelegate.swift
-//  Movies
-//
-//  Created by Adrian Silva on 22/2/22.
-//
-
 import UIKit
 import CoreData
+import Core
+import Trending
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +9,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-        window?.rootViewController = ViewController()
+        let coreAssembly = Core.Assembly()
+        let trendingAssembly = Trending.Assembly(coreAssembly: coreAssembly)
+        window?.rootViewController = trendingAssembly.viewController()
         window?.makeKeyAndVisible()
         return true
     }

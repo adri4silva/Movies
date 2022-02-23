@@ -21,7 +21,6 @@
 		3AD57C1527C572D1003E8AB9 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD57C0227C572D0003E8AB9 /* Core.framework */; };
 		3AD57C1627C572D1003E8AB9 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD57C0227C572D0003E8AB9 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3AD57C1F27C572EA003E8AB9 /* TMDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C1E27C572EA003E8AB9 /* TMDBClient.swift */; };
-		3AD57C2127C57A5A003E8AB9 /* TrendingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C2027C57A5A003E8AB9 /* TrendingResponse.swift */; };
 		3AD57C2F27C58057003E8AB9 /* Trending.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD57C2727C58057003E8AB9 /* Trending.framework */; };
 		3AD57C3627C58057003E8AB9 /* TrendingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C3527C58057003E8AB9 /* TrendingTests.swift */; };
 		3AD57C3727C58057003E8AB9 /* Trending.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AD57C2927C58057003E8AB9 /* Trending.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,6 +32,7 @@
 		3AD57C4A27C58388003E8AB9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C4927C58388003E8AB9 /* ViewModel.swift */; };
 		3AD57C4C27C5881A003E8AB9 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C4B27C5881A003E8AB9 /* Assembly.swift */; };
 		3AD57C4E27C58950003E8AB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C4D27C58950003E8AB9 /* ViewController.swift */; };
+		3AD57C4F27C63E8A003E8AB9 /* TrendingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C2027C57A5A003E8AB9 /* TrendingResponse.swift */; };
 		B73C46BE5EB801DCFAF23047 /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77613ABC7496517A4E693446 /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
 
@@ -250,7 +250,6 @@
 			children = (
 				3AD57C0427C572D0003E8AB9 /* Core.h */,
 				3AD57C1E27C572EA003E8AB9 /* TMDBClient.swift */,
-				3AD57C2027C57A5A003E8AB9 /* TrendingResponse.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -266,6 +265,7 @@
 		3AD57C2827C58057003E8AB9 /* Trending */ = {
 			isa = PBXGroup;
 			children = (
+				3AD57C2027C57A5A003E8AB9 /* TrendingResponse.swift */,
 				3AD57C2927C58057003E8AB9 /* Trending.h */,
 				3AD57C4227C580A7003E8AB9 /* Repository.swift */,
 				3AD57C4927C58388003E8AB9 /* ViewModel.swift */,
@@ -614,7 +614,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD57C1F27C572EA003E8AB9 /* TMDBClient.swift in Sources */,
-				3AD57C2127C57A5A003E8AB9 /* TrendingResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +632,7 @@
 				3AD57C4A27C58388003E8AB9 /* ViewModel.swift in Sources */,
 				3AD57C4C27C5881A003E8AB9 /* Assembly.swift in Sources */,
 				3AD57C4E27C58950003E8AB9 /* ViewController.swift in Sources */,
+				3AD57C4F27C63E8A003E8AB9 /* TrendingResponse.swift in Sources */,
 				3AD57C4327C580A7003E8AB9 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

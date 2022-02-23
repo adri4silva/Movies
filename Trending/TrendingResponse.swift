@@ -1,9 +1,9 @@
 import Foundation
 
 // MARK: - TrendingResponse
-public struct TrendingResponse: Codable {
+struct TrendingResponse: Codable {
     // MARK: - Trending
-    public struct Trending: Codable {
+    struct Trending: Codable, Hashable {
         let id: Int
         let title: String?
         let overview: String
@@ -24,18 +24,18 @@ public struct TrendingResponse: Codable {
         let name, firstAirDate: String?
     }
 
-    public enum MediaType: String, Codable {
+    enum MediaType: String, Codable, Hashable {
         case movie = "movie"
         case tv = "tv"
     }
 
-    public enum OriginalLanguage: String, Codable {
+    enum OriginalLanguage: String, Codable, Hashable {
         case en = "en"
         case it = "it"
         case ja = "ja"
     }
 
-    public let page: Int
-    public let results: [Trending]
-    public let totalPages, totalResults: Int
+    let page: Int
+    let results: [Trending]
+    let totalPages, totalResults: Int
 }

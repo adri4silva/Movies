@@ -1,11 +1,6 @@
-//
-//  SceneDelegate.swift
-//  Movies
-//
-//  Created by Adrian Silva on 22/2/22.
-//
-
 import UIKit
+import Core
+import Trending
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -13,9 +8,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-
+        let coreAssembly = Core.Assembly()
+        let trendingAssembly = Trending.Assembly(coreAssembly: coreAssembly)
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ViewController()
+        window.rootViewController = trendingAssembly.viewController()
         self.window = window
         window.makeKeyAndVisible()
     }
