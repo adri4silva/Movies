@@ -2,8 +2,7 @@
 platform :ios, '15.2'
 
 def shared_pods 
-  pod 'RxSwift', '6.5.0'
-  pod 'RxCocoa', '6.5.0'
+  
 end
 
 target 'Movies' do

@@ -9,8 +9,8 @@ public final class Assembly {
         self.coreAssembly = coreAssembly
     }
 
-    public func viewController() -> UIViewController {
-        ViewController(viewModel: viewModel())
+    public func view() -> Trending.View {
+        Trending.View(viewModel: viewModel())
     }
 
     func viewModel() -> ViewModel {

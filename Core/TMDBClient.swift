@@ -1,5 +1,5 @@
 import Foundation
-import RxSwift
+import Combine
 
 struct TMDBClientConfiguration {
     static let standard = TMDBClientConfiguration(
@@ -31,21 +31,22 @@ public final class TMDBClient {
     public func load<T: Decodable>(
         _ type: T.Type,
         from endpoint: TMDBApiEndpoint
-    ) -> Observable<T> {
+    ) -> AnyPublisher<T, Error> {
         let decoder = self.decoder
         let request = endpoint.request(with: configuration.baseUrl, adding: configuration.parameters)
 
-        return session.rx.send(request: request)
-            .map { try decoder.decode(type.self, from: $0) }
+        return session.send(request: request)
+            .decode(type: type.self, decoder: decoder)
+            .eraseToAnyPublisher()
     }
 }
 
-private extension Reactive where Base: URLSession {
-    func send(request: URLRequest) -> Observable<Data> {
-        return Observable<Data>.create { observer in
-            let task = self.base.dataTask(with: request) { data, response, error in
+private extension URLSession {
+    func send(request: URLRequest) -> AnyPublisher<Data, Error> {
+        return Future { promise in
+            let task = self.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    observer.onError(error)
+                    promise(.failure(error))
                 } else {
                     guard let httpResponse = response as? HTTPURLResponse else {
                         fatalError("Unsupported protocol")
@@ -53,19 +54,15 @@ private extension Reactive where Base: URLSession {
 
                     if 200 ..< 300 ~= httpResponse.statusCode {
                         if let data = data {
-                            observer.onNext(data)
+                            promise(.success(data))
                         }
-                        observer.onCompleted()
                     }
                 }
             }
 
             task.resume()
-
-            return Disposables.create {
-                task.cancel()
-            }
         }
+        .eraseToAnyPublisher()
     }
 }
 

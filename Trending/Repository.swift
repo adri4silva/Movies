@@ -1,13 +1,12 @@
+import Combine
 import Core
-import Foundation
-import RxSwift
 
 enum TrendingError: Error {
     case error
 }
 
 protocol RepositoryProtocol {
-    func getTrendingMovies(media: String, time: String) -> Observable<[TrendingResponse.Trending]>
+    func getTrendingMovies(media: String, time: String) -> AnyPublisher<[TrendingResponse.Trending], TrendingError>
 }
 
 final internal class Repository: RepositoryProtocol {
@@ -17,8 +16,10 @@ final internal class Repository: RepositoryProtocol {
         self.client = client
     }
 
-    func getTrendingMovies(media: String, time: String) -> Observable<[TrendingResponse.Trending]> {
+    func getTrendingMovies(media: String, time: String) -> AnyPublisher<[TrendingResponse.Trending], TrendingError> {
         client.load(TrendingResponse.self, from: .trending(media: media, time: time))
-            .map { $0.results }
+            .map(\.results)
+            .mapError { _ in TrendingError.error }
+            .eraseToAnyPublisher()
     }
 }

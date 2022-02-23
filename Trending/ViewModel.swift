@@ -1,30 +1,19 @@
-import Core
-import RxCocoa
-import RxSwift
+import Combine
 
-final class ViewModel {
-    struct Input {
-        let trigger: Driver<Void>
-    }
-    
-    struct Output {
-        let movies: Driver<[TrendingResponse.Trending]>
-    }
+final class ViewModel: ObservableObject {
+    @Published var trendingMovies: [TrendingResponse.Trending] = []
 
     private let repository: RepositoryProtocol
+    private var cancellables = Set<AnyCancellable>()
 
     init(repository: RepositoryProtocol) {
         self.repository = repository
     }
 
-    func transform(input: Input) -> Output {
-        let movies = input.trigger.flatMapLatest {
-            return self.repository.getTrendingMovies(media: "all", time: "day")
-                .asDriver(onErrorJustReturn: [])
-        }
-
-        return Output(
-            movies: movies
-        )
+    func onAppear() {
+        repository.getTrendingMovies(media: "all", time: "day")
+            .replaceError(with: trendingMovies)
+            .assign(to: \.trendingMovies, on: self)
+            .store(in: &cancellables)
     }
 }
