@@ -2,7 +2,7 @@ import Core
 import SwiftUI
 
 protocol DetailFactoryProtocol {
-    func detail(using movie: Binding<TrendingResponse.Trending?>) -> Detail
+    func detail(using movie: Binding<Movie?>) -> Detail
 }
 
 struct DetailFactory: DetailFactoryProtocol {
@@ -12,7 +12,7 @@ struct DetailFactory: DetailFactoryProtocol {
         self.movieRepository = movieRepository
     }
 
-    func detail(using movie: Binding<TrendingResponse.Trending?>) -> Detail {
+    func detail(using movie: Binding<Movie?>) -> Detail {
         Detail(movie: movie, viewModel: .init(movie: movie.wrappedValue, repository: movieRepository))
     }
 }

@@ -4,7 +4,7 @@ import Core
 final class DetailViewModel: ObservableObject {
     @Published var cast: [CastResponse.Cast] = []
     @Published var similarMovies: [Movie] = []
-    @Published var movie: TrendingResponse.Trending?
+    @Published var movie: Movie?
 
     var castNames: String {
         cast.map(\.name).joined(separator: ", ")
@@ -13,7 +13,7 @@ final class DetailViewModel: ObservableObject {
     private let repository: MovieRepositoryProtocol
     private var cancellables = Set<AnyCancellable>()
 
-    init(movie: TrendingResponse.Trending?, repository: MovieRepositoryProtocol) {
+    init(movie: Movie?, repository: MovieRepositoryProtocol) {
         self.repository = repository
         self.movie = movie
     }

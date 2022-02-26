@@ -6,7 +6,7 @@ enum TrendingError: Error {
 }
 
 protocol RepositoryProtocol {
-    func getTrendingMovies(media: String, time: String) -> AnyPublisher<[TrendingResponse.Trending], TrendingError>
+    func getTrendingMovies(media: String, time: String) -> AnyPublisher<[Movie], TrendingError>
 }
 
 final class Repository: RepositoryProtocol {
@@ -16,7 +16,7 @@ final class Repository: RepositoryProtocol {
         self.client = client
     }
 
-    func getTrendingMovies(media: String, time: String) -> AnyPublisher<[TrendingResponse.Trending], TrendingError> {
+    func getTrendingMovies(media: String, time: String) -> AnyPublisher<[Movie], TrendingError> {
         client.load(TrendingResponse.self, from: .trending(media: media, time: time))
             .map(\.results)
             .mapError { _ in TrendingError.error }
@@ -25,7 +25,7 @@ final class Repository: RepositoryProtocol {
 }
 
 final class MockRepository: RepositoryProtocol {
-    func getTrendingMovies(media: String, time: String) -> AnyPublisher<[TrendingResponse.Trending], TrendingError> {
+    func getTrendingMovies(media: String, time: String) -> AnyPublisher<[Movie], TrendingError> {
         Just(
             [
                 .movie

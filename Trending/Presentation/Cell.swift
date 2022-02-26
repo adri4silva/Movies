@@ -1,10 +1,11 @@
+import Core
 import NukeUI
 import SwiftUI
 
 struct Cell: SwiftUI.View {
-    private let movie: TrendingResponse.Trending
+    private let movie: Movie
 
-    init(movie: TrendingResponse.Trending) {
+    init(movie: Movie) {
         self.movie = movie
     }
 

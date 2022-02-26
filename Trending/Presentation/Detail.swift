@@ -3,11 +3,11 @@ import NukeUI
 import SwiftUI
 
 struct Detail: SwiftUI.View {
-    @Binding private var movie: TrendingResponse.Trending?
+    @Binding private var movie: Movie?
     @ObservedObject private var viewModel: DetailViewModel
 
     init(
-        movie: Binding<TrendingResponse.Trending?>,
+        movie: Binding<Movie?>,
         viewModel: DetailViewModel
     ) {
         self._movie = movie
@@ -43,7 +43,7 @@ struct Detail: SwiftUI.View {
 }
 
 private extension Detail {
-    func backdropImage(movie: TrendingResponse.Trending, proxy: GeometryProxy) -> some SwiftUI.View {
+    func backdropImage(movie: Movie, proxy: GeometryProxy) -> some SwiftUI.View {
         LazyImage(source: movie.backdropComposed, resizingMode: .aspectFill)
             .ignoresSafeArea()
             .frame(width: proxy.size.width, height: proxy.size.height)
@@ -54,7 +54,7 @@ private extension Detail {
             )
     }
 
-    func posterImage(movie: TrendingResponse.Trending, geometry: GeometryProxy) -> some SwiftUI.View {
+    func posterImage(movie: Movie, geometry: GeometryProxy) -> some SwiftUI.View {
         GeometryReader { reader in
             let minY = reader.frame(in: .global).minY
 
@@ -66,7 +66,7 @@ private extension Detail {
         .frame(width: geometry.size.width, height: geometry.size.height / 1.5)
     }
 
-    func description(movie: TrendingResponse.Trending, geometry: GeometryProxy) -> some SwiftUI.View {
+    func description(movie: Movie, geometry: GeometryProxy) -> some SwiftUI.View {
         VStack(spacing: 8) {
             Text(movie.titleName)
                 .font(.title).bold()
@@ -125,7 +125,7 @@ private extension Detail {
         .padding(.horizontal, 16)
     }
 
-    func similarMovies(movie: TrendingResponse.Trending, geometry: GeometryProxy) -> some SwiftUI.View {
+    func similarMovies(movie: Movie, geometry: GeometryProxy) -> some SwiftUI.View {
         VStack {
             let width = (geometry.size.width - 16 * 3) / 3
 

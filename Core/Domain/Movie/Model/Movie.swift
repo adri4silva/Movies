@@ -3,13 +3,13 @@ import Foundation
 public struct Movie: Codable, Hashable, Identifiable {
     public let id: Int
     let title: String?
-    let overview: String
+    public let overview: String
     let releaseDate: String?
     let adult: Bool?
     let backdropPath: String
     let voteCount: Int
     let genreIds: [Int]
-    let voteAverage: Double
+    public let voteAverage: Double
     let originalTitle: String?
     let posterPath: String
     let video: Bool?
@@ -19,7 +19,7 @@ public struct Movie: Codable, Hashable, Identifiable {
     let name, firstAirDate: String?
 }
 
-extension Movie {
+public extension Movie {
     static let movie = Self(
         id: 632727,
         title: "Texas Chainsaw Massacre",

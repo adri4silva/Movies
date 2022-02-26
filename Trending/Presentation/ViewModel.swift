@@ -1,8 +1,9 @@
 import Combine
+import Core
 
 final class ViewModel: ObservableObject {
-    @Published var trendingMovies: [TrendingResponse.Trending] = []
-    @Published var selectedMovie: TrendingResponse.Trending?
+    @Published var trendingMovies: [Movie] = []
+    @Published var selectedMovie: Movie?
 
     private let repository: RepositoryProtocol
     private var cancellables = Set<AnyCancellable>()
