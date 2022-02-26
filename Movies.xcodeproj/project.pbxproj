@@ -18,7 +18,7 @@
 		3AD57C1227C572D1003E8AB9 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AD57C0427C572D0003E8AB9 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AD57C1527C572D1003E8AB9 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD57C0227C572D0003E8AB9 /* Core.framework */; };
 		3AD57C1627C572D1003E8AB9 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD57C0227C572D0003E8AB9 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3AD57C1F27C572EA003E8AB9 /* TMDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C1E27C572EA003E8AB9 /* TMDBClient.swift */; };
+		3AD57C1F27C572EA003E8AB9 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C1E27C572EA003E8AB9 /* Client.swift */; };
 		3AD57C2F27C58057003E8AB9 /* Trending.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD57C2727C58057003E8AB9 /* Trending.framework */; };
 		3AD57C3627C58057003E8AB9 /* TrendingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C3527C58057003E8AB9 /* TrendingTests.swift */; };
 		3AD57C3727C58057003E8AB9 /* Trending.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AD57C2927C58057003E8AB9 /* Trending.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,6 +34,10 @@
 		3AD57C5A27C9AFAD003E8AB9 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C5927C9AFAD003E8AB9 /* Cell.swift */; };
 		3AD57C5C27C9B001003E8AB9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C5B27C9B001003E8AB9 /* Detail.swift */; };
 		3AD57C5F27C9B4AB003E8AB9 /* DetailNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C5E27C9B4AB003E8AB9 /* DetailNavigator.swift */; };
+		3AD57C6127C9B7E4003E8AB9 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C6027C9B7E4003E8AB9 /* MovieRepository.swift */; };
+		3AD57C6827C9B85F003E8AB9 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C6727C9B85F003E8AB9 /* Assembly.swift */; };
+		3AD57C6A27C9B884003E8AB9 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C6927C9B884003E8AB9 /* APIEndpoint.swift */; };
+		3AD57C6C27C9B8B1003E8AB9 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C6B27C9B8B1003E8AB9 /* Configuration.swift */; };
 		B73C46BE5EB801DCFAF23047 /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77613ABC7496517A4E693446 /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,7 +132,7 @@
 		3AD57C0427C572D0003E8AB9 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		3AD57C0927C572D1003E8AB9 /* CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD57C1027C572D1003E8AB9 /* CoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTests.swift; sourceTree = "<group>"; };
-		3AD57C1E27C572EA003E8AB9 /* TMDBClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBClient.swift; sourceTree = "<group>"; };
+		3AD57C1E27C572EA003E8AB9 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		3AD57C2027C57A5A003E8AB9 /* TrendingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingResponse.swift; sourceTree = "<group>"; };
 		3AD57C2727C58057003E8AB9 /* Trending.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Trending.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD57C2927C58057003E8AB9 /* Trending.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trending.h; sourceTree = "<group>"; };
@@ -141,6 +145,10 @@
 		3AD57C5927C9AFAD003E8AB9 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		3AD57C5B27C9B001003E8AB9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		3AD57C5E27C9B4AB003E8AB9 /* DetailNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigator.swift; sourceTree = "<group>"; };
+		3AD57C6027C9B7E4003E8AB9 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		3AD57C6727C9B85F003E8AB9 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		3AD57C6927C9B884003E8AB9 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		3AD57C6B27C9B8B1003E8AB9 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4368E853983F6D4E723A06D2 /* Pods-Trending.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trending.debug.xcconfig"; path = "Target Support Files/Pods-Trending/Pods-Trending.debug.xcconfig"; sourceTree = "<group>"; };
 		4B4346770A429A87334B6207 /* Pods-Movies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.release.xcconfig"; path = "Target Support Files/Pods-Movies/Pods-Movies.release.xcconfig"; sourceTree = "<group>"; };
 		77613ABC7496517A4E693446 /* Pods_Movies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,8 +256,9 @@
 		3AD57C0327C572D0003E8AB9 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3AD57C6327C9B800003E8AB9 /* Movie Repository */,
+				3AD57C6227C9B7F9003E8AB9 /* TMDB API */,
 				3AD57C0427C572D0003E8AB9 /* Core.h */,
-				3AD57C1E27C572EA003E8AB9 /* TMDBClient.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -332,6 +341,49 @@
 				3AD57C5E27C9B4AB003E8AB9 /* DetailNavigator.swift */,
 			);
 			path = Navigator;
+			sourceTree = "<group>";
+		};
+		3AD57C6227C9B7F9003E8AB9 /* TMDB API */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C6427C9B81E003E8AB9 /* Client */,
+				3AD57C6527C9B824003E8AB9 /* DI */,
+				3AD57C6627C9B831003E8AB9 /* Endpoint */,
+			);
+			path = "TMDB API";
+			sourceTree = "<group>";
+		};
+		3AD57C6327C9B800003E8AB9 /* Movie Repository */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C6027C9B7E4003E8AB9 /* MovieRepository.swift */,
+			);
+			path = "Movie Repository";
+			sourceTree = "<group>";
+		};
+		3AD57C6427C9B81E003E8AB9 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C1E27C572EA003E8AB9 /* Client.swift */,
+				3AD57C6B27C9B8B1003E8AB9 /* Configuration.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		3AD57C6527C9B824003E8AB9 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C6727C9B85F003E8AB9 /* Assembly.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		3AD57C6627C9B831003E8AB9 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C6927C9B884003E8AB9 /* APIEndpoint.swift */,
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 		F9D1E4A28A6E69D19C950008 /* Pods */ = {
@@ -662,7 +714,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AD57C1F27C572EA003E8AB9 /* TMDBClient.swift in Sources */,
+				3AD57C6127C9B7E4003E8AB9 /* MovieRepository.swift in Sources */,
+				3AD57C6C27C9B8B1003E8AB9 /* Configuration.swift in Sources */,
+				3AD57C6827C9B85F003E8AB9 /* Assembly.swift in Sources */,
+				3AD57C1F27C572EA003E8AB9 /* Client.swift in Sources */,
+				3AD57C6A27C9B884003E8AB9 /* APIEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
