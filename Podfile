@@ -18,5 +18,5 @@ end
 target 'Trending' do
   use_frameworks!
   shared_pods
-  pod 'Kingfisher', '~> 7.0'
+  pod 'NukeUI', '~> 0.8.0'
 end

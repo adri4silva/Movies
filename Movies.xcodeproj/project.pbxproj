@@ -31,6 +31,9 @@
 		3AD57C4C27C5881A003E8AB9 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C4B27C5881A003E8AB9 /* Assembly.swift */; };
 		3AD57C4E27C58950003E8AB9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C4D27C58950003E8AB9 /* View.swift */; };
 		3AD57C4F27C63E8A003E8AB9 /* TrendingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C2027C57A5A003E8AB9 /* TrendingResponse.swift */; };
+		3AD57C5A27C9AFAD003E8AB9 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C5927C9AFAD003E8AB9 /* Cell.swift */; };
+		3AD57C5C27C9B001003E8AB9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C5B27C9B001003E8AB9 /* Detail.swift */; };
+		3AD57C5F27C9B4AB003E8AB9 /* DetailNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD57C5E27C9B4AB003E8AB9 /* DetailNavigator.swift */; };
 		B73C46BE5EB801DCFAF23047 /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77613ABC7496517A4E693446 /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +138,9 @@
 		3AD57C4927C58388003E8AB9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		3AD57C4B27C5881A003E8AB9 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		3AD57C4D27C58950003E8AB9 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		3AD57C5927C9AFAD003E8AB9 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		3AD57C5B27C9B001003E8AB9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		3AD57C5E27C9B4AB003E8AB9 /* DetailNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigator.swift; sourceTree = "<group>"; };
 		4368E853983F6D4E723A06D2 /* Pods-Trending.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trending.debug.xcconfig"; path = "Target Support Files/Pods-Trending/Pods-Trending.debug.xcconfig"; sourceTree = "<group>"; };
 		4B4346770A429A87334B6207 /* Pods-Movies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.release.xcconfig"; path = "Target Support Files/Pods-Movies/Pods-Movies.release.xcconfig"; sourceTree = "<group>"; };
 		77613ABC7496517A4E693446 /* Pods_Movies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,12 +265,10 @@
 		3AD57C2827C58057003E8AB9 /* Trending */ = {
 			isa = PBXGroup;
 			children = (
-				3AD57C2027C57A5A003E8AB9 /* TrendingResponse.swift */,
+				3AD57C5427C9AF2B003E8AB9 /* DI */,
+				3AD57C5527C9AF32003E8AB9 /* Domain */,
+				3AD57C5827C9AF5A003E8AB9 /* Presentation */,
 				3AD57C2927C58057003E8AB9 /* Trending.h */,
-				3AD57C4227C580A7003E8AB9 /* Repository.swift */,
-				3AD57C4927C58388003E8AB9 /* ViewModel.swift */,
-				3AD57C4B27C5881A003E8AB9 /* Assembly.swift */,
-				3AD57C4D27C58950003E8AB9 /* View.swift */,
 			);
 			path = Trending;
 			sourceTree = "<group>";
@@ -275,6 +279,59 @@
 				3AD57C3527C58057003E8AB9 /* TrendingTests.swift */,
 			);
 			path = TrendingTests;
+			sourceTree = "<group>";
+		};
+		3AD57C5427C9AF2B003E8AB9 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C4B27C5881A003E8AB9 /* Assembly.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		3AD57C5527C9AF32003E8AB9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C5727C9AF54003E8AB9 /* Models */,
+				3AD57C5627C9AF3C003E8AB9 /* Repositories */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		3AD57C5627C9AF3C003E8AB9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C4227C580A7003E8AB9 /* Repository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		3AD57C5727C9AF54003E8AB9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C2027C57A5A003E8AB9 /* TrendingResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3AD57C5827C9AF5A003E8AB9 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C5D27C9B49A003E8AB9 /* Navigator */,
+				3AD57C5927C9AFAD003E8AB9 /* Cell.swift */,
+				3AD57C5B27C9B001003E8AB9 /* Detail.swift */,
+				3AD57C4D27C58950003E8AB9 /* View.swift */,
+				3AD57C4927C58388003E8AB9 /* ViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3AD57C5D27C9B49A003E8AB9 /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				3AD57C5E27C9B4AB003E8AB9 /* DetailNavigator.swift */,
+			);
+			path = Navigator;
 			sourceTree = "<group>";
 		};
 		F9D1E4A28A6E69D19C950008 /* Pods */ = {
@@ -622,10 +679,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD57C4A27C58388003E8AB9 /* ViewModel.swift in Sources */,
+				3AD57C5C27C9B001003E8AB9 /* Detail.swift in Sources */,
 				3AD57C4C27C5881A003E8AB9 /* Assembly.swift in Sources */,
 				3AD57C4E27C58950003E8AB9 /* View.swift in Sources */,
 				3AD57C4F27C63E8A003E8AB9 /* TrendingResponse.swift in Sources */,
 				3AD57C4327C580A7003E8AB9 /* Repository.swift in Sources */,
+				3AD57C5F27C9B4AB003E8AB9 /* DetailNavigator.swift in Sources */,
+				3AD57C5A27C9AFAD003E8AB9 /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

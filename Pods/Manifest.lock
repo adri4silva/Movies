@@ -1,16 +1,24 @@
 PODS:
-  - Kingfisher (7.1.2)
+  - Gifu (3.3.1)
+  - Nuke (10.7.1)
+  - NukeUI (0.8.0):
+    - Gifu (~> 3.0)
+    - Nuke (~> 10.5)
 
 DEPENDENCIES:
-  - Kingfisher (~> 7.0)
+  - NukeUI (~> 0.8.0)
 
 SPEC REPOS:
   trunk:
-    - Kingfisher
+    - Gifu
+    - Nuke
+    - NukeUI
 
 SPEC CHECKSUMS:
-  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
+  Gifu: 416d4e38c4c2fed012f019e0a1d3ffcb58e5b842
+  Nuke: 279f17a599fd1c83cf51de5e0e1f2db143a287b0
+  NukeUI: 6e99837a8d066c93baa4262692d9ea9ffbc863ba
 
-PODFILE CHECKSUM: 58ac03efde5407be39a73d7e29b9ae838e1777f9
+PODFILE CHECKSUM: 9cb0c8bfa88989f6fe158bf6ca3e40d14c1a1250
 
 COCOAPODS: 1.11.2
