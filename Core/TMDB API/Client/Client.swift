@@ -22,6 +22,7 @@ public final class TMDBClient {
         let request = endpoint.request(with: configuration.baseUrl, adding: configuration.parameters)
 
         return session.send(request: request)
+            .receive(on: DispatchQueue.main)
             .decode(type: type.self, decoder: decoder)
             .eraseToAnyPublisher()
     }

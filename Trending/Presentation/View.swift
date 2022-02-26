@@ -1,14 +1,14 @@
 import SwiftUI
-import Kingfisher
 import NukeUI
+import Core
 
 public struct View: SwiftUI.View {
-    private let detailNavigator: DetailNavigatorProtocol
+    private let detailFactory: DetailFactoryProtocol
     @ObservedObject private var viewModel: ViewModel
 
-    init(viewModel: ViewModel, detailNavigator: DetailNavigatorProtocol) {
+    init(viewModel: ViewModel, detailFactory: DetailFactoryProtocol) {
         self._viewModel = ObservedObject(wrappedValue: viewModel)
-        self.detailNavigator = detailNavigator
+        self.detailFactory = detailFactory
     }
 
     public var body: some SwiftUI.View {
@@ -35,7 +35,7 @@ public struct View: SwiftUI.View {
         }
         .fullScreenCover(item: $viewModel.selectedMovie) { movie in
             if let _ = movie {
-                detailNavigator.navigate(to: $viewModel.selectedMovie)
+                detailFactory.detail(using: $viewModel.selectedMovie)
             }
         }
         .onAppear {
@@ -46,6 +46,13 @@ public struct View: SwiftUI.View {
 
 struct Trending_Previews: PreviewProvider {
     static var previews: some SwiftUI.View {
-        View(viewModel: .init(repository: MockRepository()), detailNavigator: DetailNavigator())
+        View(
+            viewModel: .init(
+                repository: MockRepository()
+            ),
+            detailFactory: DetailFactory(
+                movieRepository: MockMovieRepository()
+            )
+        )
     }
 }

@@ -1,13 +1,17 @@
+import Core
 import NukeUI
 import SwiftUI
 
 struct Detail: SwiftUI.View {
     @Binding private var movie: TrendingResponse.Trending?
+    @ObservedObject private var viewModel: DetailViewModel
 
     init(
-        movie: Binding<TrendingResponse.Trending?>
+        movie: Binding<TrendingResponse.Trending?>,
+        viewModel: DetailViewModel
     ) {
         self._movie = movie
+        self._viewModel = ObservedObject(wrappedValue: viewModel)
     }
 
     var body: some SwiftUI.View {
@@ -20,6 +24,10 @@ struct Detail: SwiftUI.View {
                         VStack {
                             posterImage(movie: movie, proxy: proxy)
                             description(movie: movie)
+                            cast(movie: movie)
+                            Rectangle()
+                                .fill(.clear)
+                                .frame(height: 100)
                         }
                     }
                     .ignoresSafeArea()
@@ -27,6 +35,9 @@ struct Detail: SwiftUI.View {
                     closeButton
                 }
             }
+        }
+        .onAppear {
+            viewModel.onAppear()
         }
     }
 }
@@ -104,10 +115,32 @@ private extension Detail {
         }
         .padding(.horizontal, 16)
     }
+
+    func cast(movie: TrendingResponse.Trending) -> some SwiftUI.View {
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(viewModel.cast, id: \.id) { castActor in
+                    VStack {
+                        LazyImage(source: castActor.profileComposed, resizingMode: .aspectFill)
+                            .frame(width: 50, height: 50)
+                            .cornerRadius(25)
+
+                        Text(castActor.name)
+                    }
+                }
+            }
+        }
+    }
 }
 
 struct Detail_Previews: PreviewProvider {
     static var previews: some SwiftUI.View {
-        Detail(movie: .constant(.movie))
+        Detail(
+            movie: .constant(.movie),
+            viewModel: .init(
+                movie: .movie,
+                repository: MockMovieRepository()
+            )
+        )
     }
 }

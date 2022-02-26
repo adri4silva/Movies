@@ -5,6 +5,7 @@ enum RequestType: String {
 }
 
 public enum TMDBApiEndpoint {
+    case credits(movie: Int)
     case trending(media: String, time: String)
 }
 
@@ -28,6 +29,8 @@ extension TMDBApiEndpoint {
 private extension TMDBApiEndpoint {
     var method: RequestType {
         switch self {
+        case .credits:
+            return .get
         case .trending:
             return .get
         }
@@ -35,6 +38,8 @@ private extension TMDBApiEndpoint {
 
     var path: String {
         switch self {
+        case let .credits(movie):
+            return "/movie/\(movie)/credits"
         case let .trending(media, time):
             return "/trending/\(media)/\(time)"
         }
@@ -42,6 +47,8 @@ private extension TMDBApiEndpoint {
 
     var parameters: [String: String] {
         switch self {
+        case .credits:
+            return [:]
         case .trending:
             return [:]
         }

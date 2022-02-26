@@ -9,7 +9,7 @@ public final class Assembly {
     }
 
     public func view() -> Trending.View {
-        Trending.View(viewModel: viewModel(), detailNavigator: detailNavigator())
+        Trending.View(viewModel: viewModel(), detailFactory: detailFactory())
     }
 
     func viewModel() -> ViewModel {
@@ -20,7 +20,11 @@ public final class Assembly {
         Repository(client: coreAssembly.client)
     }
 
-    func detailNavigator() -> DetailNavigatorProtocol {
-        DetailNavigator()
+    func detailFactory() -> DetailFactoryProtocol {
+        DetailFactory(movieRepository: movieRepository())
+    }
+
+    func movieRepository() -> MovieRepositoryProtocol {
+        MovieRepository(client: coreAssembly.client)
     }
 }
