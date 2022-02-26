@@ -5,16 +5,23 @@ final class DetailViewModel: ObservableObject {
     @Published var cast: [CastResponse.Cast] = []
     @Published var similarMovies: [Movie] = []
     @Published var movie: Movie?
+    let isPushed: Bool
 
     var castNames: String {
         cast.map(\.name).joined(separator: ", ")
     }
 
+
     private let repository: MovieRepositoryProtocol
     private var cancellables = Set<AnyCancellable>()
 
-    init(movie: Movie?, repository: MovieRepositoryProtocol) {
+    init(
+        movie: Movie?,
+        isPushed: Bool,
+        repository: MovieRepositoryProtocol
+    ) {
         self.repository = repository
+        self.isPushed = isPushed
         self.movie = movie
     }
 

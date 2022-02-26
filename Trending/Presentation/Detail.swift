@@ -3,15 +3,20 @@ import NukeUI
 import SwiftUI
 
 struct Detail: SwiftUI.View {
+    @Environment(\.presentationMode) var presentationMode
+    @State private var isNavigationActive: Bool = false
     @Binding private var movie: Movie?
     @ObservedObject private var viewModel: DetailViewModel
+    private let detailFactory: DetailFactoryProtocol
 
     init(
         movie: Binding<Movie?>,
-        viewModel: DetailViewModel
+        viewModel: DetailViewModel,
+        detailFactory: DetailFactoryProtocol
     ) {
         self._movie = movie
         self._viewModel = ObservedObject(wrappedValue: viewModel)
+        self.detailFactory = detailFactory
     }
 
     var body: some SwiftUI.View {
@@ -107,10 +112,11 @@ private extension Detail {
             HStack {
                 Button {
                     withAnimation {
+                        presentationMode.wrappedValue.dismiss()
                         self.movie = nil
                     }
                 } label: {
-                    Image(systemName: "xmark")
+                    Image(systemName: viewModel.isPushed ? "chevron.left" : "xmark")
                         .font(.system(size: 17, weight: .bold))
                         .foregroundColor(.secondary)
                         .padding(8)
@@ -139,9 +145,15 @@ private extension Detail {
                 spacing: 16
             ) {
                 ForEach(viewModel.similarMovies) { movie in
-                    LazyImage(source: movie.posterComposed, resizingMode: .aspectFill)
-                        .frame(width: width, height: 150)
-                        .cornerRadius(8)
+                    NavigationLink(isActive: $isNavigationActive) {
+                        detailFactory.detail(using: .constant(movie), isPushed: true)
+                            .navigationTitle("")
+                            .navigationBarHidden(true)
+                    } label: {
+                        LazyImage(source: movie.posterComposed, resizingMode: .aspectFill)
+                            .frame(width: width, height: 150)
+                            .cornerRadius(8)
+                    }
                 }
             }
         }
@@ -155,8 +167,10 @@ struct Detail_Previews: PreviewProvider {
             movie: .constant(.movie),
             viewModel: .init(
                 movie: .movie,
+                isPushed: false,
                 repository: MockMovieRepository()
-            )
+            ),
+            detailFactory: DetailFactory(movieRepository: MockMovieRepository())
         )
     }
 }

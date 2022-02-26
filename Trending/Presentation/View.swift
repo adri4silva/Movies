@@ -34,8 +34,12 @@ public struct View: SwiftUI.View {
             }
         }
         .fullScreenCover(item: $viewModel.selectedMovie) { movie in
-            if let _ = movie {
-                detailFactory.detail(using: $viewModel.selectedMovie)
+            NavigationView {
+                if let _ = movie {
+                    detailFactory.detail(using: $viewModel.selectedMovie, isPushed: false)
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                }
             }
         }
         .onAppear {

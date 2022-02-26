@@ -2,7 +2,7 @@ import Core
 import SwiftUI
 
 protocol DetailFactoryProtocol {
-    func detail(using movie: Binding<Movie?>) -> Detail
+    func detail(using movie: Binding<Movie?>, isPushed: Bool) -> Detail
 }
 
 struct DetailFactory: DetailFactoryProtocol {
@@ -12,7 +12,11 @@ struct DetailFactory: DetailFactoryProtocol {
         self.movieRepository = movieRepository
     }
 
-    func detail(using movie: Binding<Movie?>) -> Detail {
-        Detail(movie: movie, viewModel: .init(movie: movie.wrappedValue, repository: movieRepository))
+    func detail(using movie: Binding<Movie?>, isPushed: Bool) -> Detail {
+        Detail(
+            movie: movie,
+            viewModel: .init(movie: movie.wrappedValue, isPushed: isPushed, repository: movieRepository),
+            detailFactory: self
+        )
     }
 }
