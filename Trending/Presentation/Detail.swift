@@ -22,12 +22,12 @@ struct Detail: SwiftUI.View {
 
                     ScrollView {
                         VStack {
-                            posterImage(movie: movie, proxy: proxy)
-                            description(movie: movie)
-                            cast(movie: movie)
+                            posterImage(movie: movie, geometry: proxy)
+                            description(movie: movie, geometry: proxy)
+
                             Rectangle()
                                 .fill(.clear)
-                                .frame(height: 100)
+                                .frame(height: 50)
                         }
                     }
                     .ignoresSafeArea()
@@ -54,7 +54,7 @@ private extension Detail {
             )
     }
 
-    func posterImage(movie: TrendingResponse.Trending, proxy: GeometryProxy) -> some SwiftUI.View {
+    func posterImage(movie: TrendingResponse.Trending, geometry: GeometryProxy) -> some SwiftUI.View {
         GeometryReader { reader in
             let minY = reader.frame(in: .global).minY
 
@@ -63,10 +63,10 @@ private extension Detail {
                 .scaleEffect(minY > 0 ? minY / 1000 + 1 : 1)
                 .blur(radius: minY > 0 ? minY / 50 : 0)
         }
-        .frame(width: proxy.size.width, height: proxy.size.height / 1.5)
+        .frame(width: geometry.size.width, height: geometry.size.height / 1.5)
     }
 
-    func description(movie: TrendingResponse.Trending) -> some SwiftUI.View {
+    func description(movie: TrendingResponse.Trending, geometry: GeometryProxy) -> some SwiftUI.View {
         VStack(spacing: 8) {
             Text(movie.titleName)
                 .font(.title).bold()
@@ -82,6 +82,15 @@ private extension Detail {
                 .font(.footnote)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.white.opacity(0.7))
+
+            if !viewModel.castNames.isEmpty {
+                Text("Cast: \(viewModel.castNames)...")
+                    .font(.footnote)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.white.opacity(0.7))
+            }
+
+            similarMovies(movie: movie, geometry: geometry)
         }
         .padding(16)
         .background(
@@ -116,20 +125,27 @@ private extension Detail {
         .padding(.horizontal, 16)
     }
 
-    func cast(movie: TrendingResponse.Trending) -> some SwiftUI.View {
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(viewModel.cast, id: \.id) { castActor in
-                    VStack {
-                        LazyImage(source: castActor.profileComposed, resizingMode: .aspectFill)
-                            .frame(width: 50, height: 50)
-                            .cornerRadius(25)
+    func similarMovies(movie: TrendingResponse.Trending, geometry: GeometryProxy) -> some SwiftUI.View {
+        VStack {
+            let width = (geometry.size.width - 16 * 3) / 3
 
-                        Text(castActor.name)
-                    }
+            Text("Similar")
+                .font(.footnote).bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(.white.opacity(0.7))
+
+            LazyVGrid(
+                columns: Array(repeating: GridItem(.flexible()), count: 3),
+                spacing: 16
+            ) {
+                ForEach(viewModel.similarMovies) { movie in
+                    LazyImage(source: movie.posterComposed, resizingMode: .aspectFill)
+                        .frame(width: width, height: 150)
+                        .cornerRadius(8)
                 }
             }
         }
+        .padding(.top, 16)
     }
 }
 

@@ -6,6 +6,7 @@ public enum MovieError: Error {
 
 public protocol MovieRepositoryProtocol {
     func getCredits(movie: Int) -> AnyPublisher<[CastResponse.Cast], MovieError>
+    func getSimilar(movie: Int) -> AnyPublisher<[Movie], MovieError>
 }
 
 public final class MovieRepository: MovieRepositoryProtocol {
@@ -25,6 +26,17 @@ public final class MovieRepository: MovieRepositoryProtocol {
             }
             .eraseToAnyPublisher()
     }
+
+    public func getSimilar(movie: Int) -> AnyPublisher<[Movie], MovieError> {
+        client.load(SimilarResponse.self, from: .similar(movie: movie))
+            .mapError { error in
+                MovieError.error(description: error.localizedDescription)
+            }
+            .map { response in
+                Array(response.results.prefix(6))
+            }
+            .eraseToAnyPublisher()
+    }
 }
 
 public final class MockMovieRepository: MovieRepositoryProtocol {
@@ -34,5 +46,9 @@ public final class MockMovieRepository: MovieRepositoryProtocol {
         Just([])
             .setFailureType(to: MovieError.self)
             .eraseToAnyPublisher()
+    }
+
+    public func getSimilar(movie: Int) -> AnyPublisher<[Movie], MovieError> {
+        fatalError()
     }
 }
