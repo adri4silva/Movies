@@ -7,6 +7,7 @@ public enum MovieError: Error {
 public protocol MovieRepositoryProtocol {
     func getCredits(movie: Int) -> AnyPublisher<[CastResponse.Cast], MovieError>
     func getSimilar(movie: Int) -> AnyPublisher<[Movie], MovieError>
+    func getVideos(movie: Int) -> AnyPublisher<[VideoResponse.Video], MovieError>
 }
 
 public final class MovieRepository: MovieRepositoryProtocol {
@@ -37,6 +38,17 @@ public final class MovieRepository: MovieRepositoryProtocol {
             }
             .eraseToAnyPublisher()
     }
+
+    public func getVideos(movie: Int) -> AnyPublisher<[VideoResponse.Video], MovieError> {
+        client.load(VideoResponse.self, from: .video(movie: movie))
+            .mapError {
+                MovieError.error(description: $0.localizedDescription)
+            }
+            .map {
+                $0.results.filter { $0.site == "YouTube" }
+            }
+            .eraseToAnyPublisher()
+    }
 }
 
 public final class MockMovieRepository: MovieRepositoryProtocol {
@@ -49,6 +61,10 @@ public final class MockMovieRepository: MovieRepositoryProtocol {
     }
 
     public func getSimilar(movie: Int) -> AnyPublisher<[Movie], MovieError> {
+        fatalError()
+    }
+
+    public func getVideos(movie: Int) -> AnyPublisher<[VideoResponse.Video], MovieError> {
         fatalError()
     }
 }

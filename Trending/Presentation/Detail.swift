@@ -95,7 +95,7 @@ private extension Detail {
                     .foregroundColor(.white.opacity(0.7))
             }
 
-            similarMovies(movie: movie, geometry: geometry)
+            exploreSection(geometry: geometry)
         }
         .padding(16)
         .background(
@@ -131,28 +131,90 @@ private extension Detail {
         .padding(.horizontal, 16)
     }
 
-    func similarMovies(movie: Movie, geometry: GeometryProxy) -> some SwiftUI.View {
+    func exploreSection(geometry: GeometryProxy) -> some SwiftUI.View {
         VStack {
             let width = (geometry.size.width - 16 * 3) / 3
 
-            Text("Similar")
-                .font(.footnote).bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(.white.opacity(0.7))
-
-            LazyVGrid(
-                columns: Array(repeating: GridItem(.flexible()), count: 3),
-                spacing: 16
-            ) {
-                ForEach(viewModel.similarMovies) { movie in
-                    NavigationLink(isActive: $isNavigationActive) {
-                        detailFactory.detail(using: .constant(movie), isPushed: true)
-                            .navigationTitle("")
-                            .navigationBarHidden(true)
+            HStack(spacing: 8) {
+                if !viewModel.similarMovies.isEmpty {
+                    Button {
+                        withAnimation {
+                            viewModel.selectedSection = .similar
+                        }
                     } label: {
-                        LazyImage(source: movie.posterComposed, resizingMode: .aspectFill)
-                            .frame(width: width, height: 150)
-                            .cornerRadius(8)
+                        Text("Similar")
+                            .font(.footnote).bold()
+                            .foregroundColor(.white.opacity(0.7))
+                    }
+                    .overlay(
+                        viewModel.selectedSection == .similar ?
+                        Rectangle()
+                            .fill(.white.opacity(0.7))
+                            .frame(height: 4)
+                            .offset(y: 4)
+                        : nil,
+                        alignment: .bottom
+                    )
+                }
+
+                if !viewModel.videos.isEmpty {
+                    Button {
+                        withAnimation {
+                            viewModel.selectedSection = .videos
+                        }
+                    } label: {
+                        Text("Trailer")
+                            .font(.footnote).bold()
+                            .foregroundColor(.white.opacity(0.7))
+                    }
+                    .overlay(
+                        viewModel.selectedSection == .videos ?
+                        Rectangle()
+                            .fill(.white.opacity(0.7))
+                            .frame(height: 4)
+                            .offset(y: 4)
+                        : nil,
+                        alignment: .bottom
+                    )
+                }
+
+                Spacer()
+            }
+
+            switch viewModel.selectedSection {
+            case .similar:
+                LazyVGrid(
+                    columns: Array(repeating: GridItem(.flexible()), count: 3),
+                    spacing: 16
+                ) {
+                    ForEach(viewModel.similarMovies) { movie in
+                        NavigationLink(isActive: $isNavigationActive) {
+                            detailFactory.detail(using: .constant(movie), isPushed: true)
+                                .navigationTitle("")
+                                .navigationBarHidden(true)
+                        } label: {
+                            LazyImage(source: movie.posterComposed, resizingMode: .aspectFill)
+                                .frame(width: width, height: width * 16 / 9)
+                                .cornerRadius(8)
+                        }
+                    }
+                }
+            case .videos:
+                LazyVGrid(
+                    columns: Array(repeating: GridItem(.flexible()), count: 1),
+                    spacing: 16
+                ) {
+                    ForEach(viewModel.videos, id: \.id) { video in
+                        VStack(spacing: 8) {
+                            YoutubePlayer(videoKey: video.key)
+                                .frame(width: geometry.size.width - 32, height: (geometry.size.width - 32) * 9 / 16)
+                                .cornerRadius(8)
+
+                            Text(video.name)
+                                .font(.footnote).bold()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .foregroundColor(.white.opacity(0.7))
+                        }
                     }
                 }
             }

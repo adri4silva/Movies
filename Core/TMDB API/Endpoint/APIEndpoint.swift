@@ -8,6 +8,7 @@ public enum TMDBApiEndpoint {
     case credits(movie: Int)
     case similar(movie: Int)
     case trending(media: String, time: String)
+    case video(movie: Int)
 }
 
 extension TMDBApiEndpoint {
@@ -36,6 +37,8 @@ private extension TMDBApiEndpoint {
             return .get
         case .trending:
             return .get
+        case .video:
+            return .get
         }
     }
 
@@ -47,6 +50,8 @@ private extension TMDBApiEndpoint {
             return "/movie/\(movie)/similar"
         case let .trending(media, time):
             return "/trending/\(media)/\(time)"
+        case let .video(movie):
+            return "/movie/\(movie)/videos"
         }
     }
 
@@ -57,6 +62,8 @@ private extension TMDBApiEndpoint {
         case .similar:
             return [:]
         case .trending:
+            return [:]
+        case .video:
             return [:]
         }
     }

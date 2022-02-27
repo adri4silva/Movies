@@ -19,4 +19,5 @@ target 'Trending' do
   use_frameworks!
   shared_pods
   pod 'NukeUI', '~> 0.8.0'
+  pod "youtube-ios-player-helper", "~> 1.0.4"
 end
